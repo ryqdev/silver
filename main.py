@@ -20,7 +20,7 @@ def main():
 
     # Combine all dataframes into a single dataframe
     df = pd.concat(df_list)
-    df.to_csv(f'{symbol}.csv')
+    df.to_csv(f'data/{symbol}.csv')
 
 
 if __name__ == "__main__":
