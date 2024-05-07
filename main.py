@@ -13,13 +13,8 @@ def main():
 
     args = parser.parse_args()
     symbol = args.data
-
-    df_list = []
-    data = yf.download(symbol, group_by="Ticker", period='1mo')
-    df_list.append(data)
-
-    # Combine all dataframes into a single dataframe
-    df = pd.concat(df_list)
+    data = yf.download(symbol, group_by="Ticker")
+    df = pd.DataFrame(data)
     df.to_csv(f'data/{symbol}.csv')
 
 
