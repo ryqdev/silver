@@ -29,7 +29,7 @@ def main():
         password='0mwC5BD~i3hoK',
         secure=True
     )
-    print("Result:", client.query("SELECT 1").result_set[0][0])
+    print("Result:", client.query("select * from TLT where Close < 85").result_set)
 
 
 if __name__ == "__main__":
