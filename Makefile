@@ -1,2 +1,2 @@
 run:
-	@python main.py --data TLT
+	@python main.py --data SPY
