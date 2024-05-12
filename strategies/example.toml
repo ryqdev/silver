@@ -1,0 +1,5 @@
+[strategy]
+symbol = "AAPL"
+holding = 100
+start = "1980-12-12"
+end = "2024-05-10"
