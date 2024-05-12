@@ -17,6 +17,10 @@ def main() -> NoReturn:
                         type=str,
                         help='fetch data',
                         default='SPY')
+    parser.add_argument('--backtest',
+                        type=str,
+                        help='backtest strategies',
+                        default='SPY')
 
     args = parser.parse_args()
     symbol: str = args.data
