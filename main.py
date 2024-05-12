@@ -1,6 +1,8 @@
 import argparse
-import clickhouse_connect
+import os
+from dotenv import load_dotenv
 
+import clickhouse_connect
 import yfinance as yf
 import pandas as pd
 
@@ -23,10 +25,11 @@ def main():
     # df = pd.concat(df_list)
     # df.to_csv(f'{symbol}.csv')
 
+    load_dotenv()
     client = clickhouse_connect.get_client(
         host='famep8kcv5.ap-southeast-1.aws.clickhouse.cloud',
         user='default',
-        password='0mwC5BD~i3hoK',
+        password=os.getenv('CLICKHOUSE_PASSWORD'),
         secure=True
     )
     print("Result:", client.query("select * from TLT where Close < 85").result_set)
