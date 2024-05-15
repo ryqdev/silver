@@ -35,9 +35,9 @@ def main() -> NoReturn:
                         default=None)
 
     parser.add_argument('--plot',
-                        type=bool,
+                        type=str,
                         help='plot',
-                        default=False)
+                        default=None)
 
     args = parser.parse_args()
 
@@ -51,8 +51,17 @@ def main() -> NoReturn:
         handle_backtest(args.backtest)
 
     if args.backtrader is not None:
-        handler_backtrader(args.backtrader, handle_strategy(args.strategy), args.plot)
+        handler_backtrader(args.backtrader, handle_strategy(args.strategy), handle_plot(args.plot))
+
+
+def handle_plot(plot: str) -> bool:
+    if plot is not None:
+        if plot.lower() in ('yes', 'true', 't', 'y', '1'):
+            return True
+
+    return False
 
 
 if __name__ == "__main__":
     main()
+

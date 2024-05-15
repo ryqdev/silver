@@ -2,13 +2,12 @@ from typing import NoReturn
 from datetime import datetime
 
 from loguru import logger
-import backtrader.analyzers as btanalyzers
 from src.color import bcolors
 from src.strategies.strategy import *
 
 
-def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_ploting: bool) -> NoReturn:
-    logger.info(f"handle_backtrader {strategy_class}")
+def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_plotting: bool) -> NoReturn:
+    logger.info(f"handle_backtrader {strategy_class}, is_plotting: {is_plotting}")
 
     cerebro = bt.Cerebro()
 
@@ -23,7 +22,7 @@ def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_ploting: boo
     # data
     data0 = bt.feeds.YahooFinanceData(dataname=f'data/{symbol}.csv',
                                       fromdate=datetime(2000, 1, 1),
-                                      todate=datetime(2024, 5, 15))
+                                      todate=datetime(2000, 5, 15))
     cerebro.adddata(data0)
 
     # analyzer
@@ -53,6 +52,6 @@ def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_ploting: boo
     logger.info(f"{bcolors.WARNING}****************************")
 
     # plot
-    if is_ploting:
+    if is_plotting:
         cerebro.plot(iplot=False)
 
