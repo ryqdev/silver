@@ -5,7 +5,7 @@ from src.clickhouse.clickhouse import handle_clickhouse
 from src.backtest.backtest import handle_backtest
 from src.csv.csv import handle_csv
 from src.backtrade.backtrade import handler_backtrader
-from strategy import handle_strategy
+from src.strategies.strategy import handle_strategy
 
 
 def main() -> NoReturn:
