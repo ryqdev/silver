@@ -3,3 +3,7 @@ run:
 
 backtest:
 	@python main.py --backtest example
+
+
+csv:
+	@python main.py --csv MSFT

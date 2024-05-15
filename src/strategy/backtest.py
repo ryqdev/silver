@@ -1,17 +1,8 @@
-import argparse
-import datetime
-import os
 import toml
 
-import pandas
-
-import clickhouse_connect
-import yfinance as yf
-import pandas as pd
-
-from typing import NoReturn, List
+from typing import NoReturn
 from loguru import logger
-from src.data.data import get_clickhouse_client, read_clickhouse
+from src.clickhouse.clickhouse import get_clickhouse_client, read_clickhouse
 
 
 class bcolors:

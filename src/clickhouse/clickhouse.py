@@ -5,15 +5,15 @@ import pandas
 
 import clickhouse_connect
 import yfinance as yf
-import pandas as pd
+
 
 from typing import NoReturn, List
 from loguru import logger
 from dotenv import load_dotenv
 
 
-def handle_data(symbol: str) -> NoReturn:
-    logger.info(f"handler_data {symbol}")
+def handle_clickhouse(symbol: str) -> NoReturn:
+    logger.info(f"handler_clickhouse {symbol}")
     ticker = yf.Ticker(symbol)
     hist = ticker.history(period="max")
 
@@ -57,6 +57,3 @@ def read_clickhouse(client, symbol: str, date: str) -> List:
     return result.result_rows
 
 
-def save_to_csv(df_list, symbol):
-    df = pd.concat(df_list)
-    df.to_csv(f'{symbol}.csv')
