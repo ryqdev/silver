@@ -1,4 +1,4 @@
-from strategy import *
+from src.strategies.strategy import *
 
 
 class SmaCross(bt.SignalStrategy):
