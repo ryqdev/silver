@@ -4,6 +4,7 @@ from typing import NoReturn
 from src.clickhouse.clickhouse import handle_clickhouse
 from src.strategy.backtest import handle_backtest
 from src.csv.csv import handle_csv
+from src.backtrader.backtrader import handler_backtrader
 
 
 def main() -> NoReturn:
@@ -21,19 +22,25 @@ def main() -> NoReturn:
                         help='backtest strategies',
                         default=None)
 
-    args = parser.parse_args()
+    # Reference: https://www.backtrader.com/docu/
+    parser.add_argument('--backtrader',
+                        type=str,
+                        help='backtrader',
+                        default=None)
 
+    args = parser.parse_args()
 
     if args.csv is not None:
         handle_csv(args.csv)
 
-
     if args.clickhouse is not None:
         handle_clickhouse(args.clickhouse)
 
-
     if args.backtest is not None:
         handle_backtest(args.backtest)
+
+    if args.backtrader is not None:
+        handler_backtrader(args.backtrader)
 
 
 if __name__ == "__main__":
