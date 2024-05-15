@@ -1,14 +1,7 @@
-
-run:
-	@python main.py --data AAPL --backtest example
-
-backtest:
-	@python main.py --backtest example
-
 # make csv symbol=TLT
 csv:
 	@python main.py --csv ${symbol}
 
-# make backtrader symbol=TLT
+# make backtrader symbol=SPY strategy=hold plot=true
 backtrader: csv
-	@python main.py --backtrader ${symbol} --strategy ${strategy}
+	@python main.py --backtrader ${symbol} --strategy ${strategy} --plot ${plot}

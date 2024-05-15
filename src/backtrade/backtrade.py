@@ -7,7 +7,7 @@ from src.color import bcolors
 from src.strategies.strategy import *
 
 
-def handler_backtrader(symbol: str, strategy_class: bt.Strategy) -> NoReturn:
+def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_ploting: bool) -> NoReturn:
     logger.info(f"handle_backtrader {strategy_class}")
 
     cerebro = bt.Cerebro()
@@ -41,6 +41,7 @@ def handler_backtrader(symbol: str, strategy_class: bt.Strategy) -> NoReturn:
     value_color: str = bcolors.OKGREEN if original_value < final_value else bcolors.FAIL
     logger.info(f'Final Portfolio Value: {value_color}%.2f' % final_value)
 
+    # statistics
     strat = results[0]
     sharp_ratio = strat.analyzers.SharpeRatio.get_analysis()['sharperatio']
     rtot = strat.analyzers.Returns.get_analysis()['rtot']
@@ -50,5 +51,8 @@ def handler_backtrader(symbol: str, strategy_class: bt.Strategy) -> NoReturn:
     logger.info(f'Returns:{rtot}')
     logger.info(f'DrawDown:{drawdown}')
     logger.info(f"{bcolors.WARNING}****************************")
-    cerebro.plot(iplot=False)
+
+    # plot
+    if is_ploting:
+        cerebro.plot(iplot=False)
 

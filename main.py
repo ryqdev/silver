@@ -34,6 +34,11 @@ def main() -> NoReturn:
                         help='backtrader strategy',
                         default=None)
 
+    parser.add_argument('--plot',
+                        type=bool,
+                        help='plot',
+                        default=False)
+
     args = parser.parse_args()
 
     if args.csv is not None:
@@ -46,7 +51,7 @@ def main() -> NoReturn:
         handle_backtest(args.backtest)
 
     if args.backtrader is not None:
-        handler_backtrader(args.backtrader, handle_strategy(args.strategy))
+        handler_backtrader(args.backtrader, handle_strategy(args.strategy), args.plot)
 
 
 if __name__ == "__main__":
