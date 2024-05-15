@@ -2,7 +2,7 @@ import argparse
 from typing import NoReturn
 
 from src.clickhouse.clickhouse import handle_clickhouse
-from src.strategy.backtest import handle_backtest
+from src.backtest.backtest import handle_backtest
 from src.csv.csv import handle_csv
 from src.backtrader.backtrader import handler_backtrader
 

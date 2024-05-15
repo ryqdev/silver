@@ -14,12 +14,11 @@ class SmaCross(bt.SignalStrategy):
 def handler_backtrader(symbol: str) -> NoReturn:
     logger.info(f"handle_backtrader {symbol}")
 
-
     cerebro = bt.Cerebro()
     cerebro.addstrategy(SmaCross)
 
     data0 = bt.feeds.YahooFinanceData(dataname=f'data/{symbol}.csv', fromdate=datetime(2011, 1, 1),
-                                      todate=datetime(2012, 12, 31))
+                                      todate=datetime(2024, 5, 15))
     cerebro.adddata(data0)
 
     cerebro.run()

@@ -21,10 +21,10 @@ def handle_backtest(strategy: str) -> NoReturn:
     logger.info(f"handle_backtest {strategy}")
     with open("strategies/example.toml", 'r') as f:
         config = toml.load(f)
-        symbol = config['strategy']['symbol']
-        holding = config['strategy']['holding']
-        start_date = config['strategy']['start']
-        end_date = config['strategy']['end']
+        symbol = config['backtest']['symbol']
+        holding = config['backtest']['holding']
+        start_date = config['backtest']['start']
+        end_date = config['backtest']['end']
 
     clickhouse_client = get_clickhouse_client()
     start_price = read_clickhouse(clickhouse_client, symbol, start_date)[0][4]
