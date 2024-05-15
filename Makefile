@@ -11,4 +11,4 @@ csv:
 
 # make backtrader symbol=TLT
 backtrader: csv
-	@python main.py --backtrader ${symbol}
+	@python main.py --backtrader ${symbol} --strategy ${strategy}
