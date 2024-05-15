@@ -6,12 +6,14 @@ from loguru import logger
 
 def handle_csv(symbol: str) -> NoReturn:
     logger.info(f"handle_csv {symbol}")
-    ticker = yf.Ticker(symbol)
-    hist = ticker.history(period="max")
-    save_to_csv(hist, symbol)
 
+    df_list = []
+    data = yf.download(symbol, group_by="Ticker", period='max')
+    df_list.append(data)
 
-
-def save_to_csv(df_list, symbol):
     df = pd.concat(df_list)
-    df.to_csv(f'{symbol}.csv')
+    df.to_csv(f'data/{symbol}.csv')
+
+
+
+
