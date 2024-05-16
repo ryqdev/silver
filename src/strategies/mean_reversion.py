@@ -8,7 +8,6 @@ class MeanReversion(bt.Strategy):
     t = 1
 
     def __init__(self):
-        self.log("initiating strategy...")
         self.data_ready = False
         self.order = None
 
@@ -20,26 +19,17 @@ class MeanReversion(bt.Strategy):
 
 
     def log(self, txt):
-        # logger.info(
-        #     f'%s, %s, close_price: {bcolors.OKGREEN}%s' % (str(self.data.datetime.datetime()), txt, str(self.data.close[0])))
-        # logger.info(f'%s, close_price: {bcolors.OKGREEN}%s' % ( txt, str(self.data.close[0])))
-        ohlcv = []
-        ohlcv.append(str(self.data.datetime.datetime()))
-        ohlcv.append(str(self.data.open[0]))
-        ohlcv.append(str(self.data.high[0]))
-        ohlcv.append(str(self.data.low[0]))
-        ohlcv.append(str(self.data.close[0]))
-        ohlcv.append(str(self.data.volume[0]))
-        logger.info(",".join(ohlcv))
-
+        logger.info(
+            f'%s, %s, {bcolors.OKBLUE}close_price: {bcolors.WARNING}%s' % (str(self.data.datetime.datetime()), txt, str(self.data.close[0])))
 
     def next(self):
-        self.log("Action!")
         if not self.data_ready:
             return
         if self.t == 1:
+            self.log(f"{bcolors.OKGREEN}buy")
             self.order = self.buy()
         elif self.t == 0:
+            self.log(f"{bcolors.FAIL}sell")
             self.order = self.sell()
         self.t = 1 - self.t
 
