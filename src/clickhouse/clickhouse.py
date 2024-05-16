@@ -9,7 +9,7 @@ import yfinance as yf
 
 from typing import NoReturn, List
 from loguru import logger
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 
 def handle_clickhouse(symbol: str) -> NoReturn:
@@ -23,7 +23,7 @@ def handle_clickhouse(symbol: str) -> NoReturn:
 
 
 def get_clickhouse_client() -> clickhouse_connect.driver.Client:
-    load_dotenv()
+    # load_dotenv()
     client: clickhouse_connect.driver.Client = clickhouse_connect.get_client(
         host='famep8kcv5.ap-southeast-1.aws.clickhouse.cloud',
         user='default',

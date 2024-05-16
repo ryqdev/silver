@@ -6,6 +6,7 @@ from src.backtest.backtest import handle_backtest
 from src.csv.csv import handle_csv
 from src.backtrade.backtrade import handler_backtrader
 from src.strategies.strategy import handle_strategy
+from src.backtrade.livetrader import live_trader
 
 
 def main() -> NoReturn:
@@ -39,7 +40,15 @@ def main() -> NoReturn:
                         help='plot',
                         default=None)
 
+    parser.add_argument('--live',
+                        type=str,
+                        help='plot',
+                        default=None)
+
     args = parser.parse_args()
+
+    if args.live is not None:
+        live_trader()
 
     if args.csv is not None:
         handle_csv(args.csv)
