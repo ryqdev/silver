@@ -4,12 +4,14 @@ from loguru import logger
 
 class BuyAndHold(bt.Strategy):
     cash = 1000000
+    def __init__(self):
+        self.log("initiating strategy...")
+        self.order = None
+
     def log(self, txt, dt=None):
         dt = dt or self.datas[0].datetime.date(0)
-        logger.info('%s, %s, cash: %s' % (dt.isoformat(), txt, self.broker.get_cash()))
+        logger.info('%s, %s' % (dt.isoformat(), txt))
 
-    def __init__(self):
-        self.order = None
 
     def next(self):
         # buy and hold
