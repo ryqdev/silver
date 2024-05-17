@@ -35,9 +35,9 @@ class MyStrategy(bt.Strategy):
             return
 
         if not self.position:
-            self.buy(size=1)
+            self.buy(exectype=bt.Order.Market)
         elif self.position:
-            self.sell()
+            self.sell(exectype=bt.Order.Market)
 
 
 def live_trader() -> NoReturn:
@@ -45,8 +45,11 @@ def live_trader() -> NoReturn:
 
     store = ibnew.IBStore(port=7497)
     data = store.getdata(dataname='USD.JPY', sectype='CASH', exchange='IDEALPRO', timeframe=bt.TimeFrame.Seconds)
+    # data = store.getdata(dataname='SPY', sectype='STK', exchange='BYX', timeframe=bt.TimeFrame.Seconds)
     cerebro.resampledata(data, timeframe=bt.TimeFrame.Seconds, compression=1)
 
     cerebro.broker = store.getbroker()
     cerebro.addstrategy(MeanReversion)
     cerebro.run()
+
+    #BATS, BYX, EDGX, EDGEA, IEX

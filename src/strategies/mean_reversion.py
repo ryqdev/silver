@@ -20,18 +20,29 @@ class MeanReversion(bt.Strategy):
 
     def log(self, txt):
         logger.info(
-            f'%s, %s, {bcolors.OKBLUE}close_price: {bcolors.WARNING}%s' % (str(self.data.datetime.datetime()), txt, str(self.data.close[0])))
+            f'%s, %s, {bcolors.OKBLUE} %s, %s, %s, {bcolors.WARNING}%s' % (str(self.data.datetime.datetime()), txt, str(self.data.open[0]), str(self.data.high[0]), str(self.data.low[0]), str(self.data.close[0])))
 
     def next(self):
         if not self.data_ready:
             return
-        if self.t == 1:
+        self.log("data:")
+        c_price = self.data.close[0]
+        o_price = self.data.open[0]
+        if c_price - o_price > 0.1:
             self.log(f"{bcolors.OKGREEN}buy")
-            self.order = self.buy()
-        elif self.t == 0:
+            self.order = self.buy(exectype=bt.Order.Market)
+        elif c_price - o_price < -0.1:
             self.log(f"{bcolors.FAIL}sell")
-            self.order = self.sell()
-        self.t = 1 - self.t
+            self.order = self.sell(exectype=bt.Order.Market)
+
+
+    # if self.t == 1:
+        #     self.log(f"{bcolors.OKGREEN}buy")
+        #     self.order = self.buy(exectype=bt.Order.Market)
+        # elif self.t == 0:
+        #     self.log(f"{bcolors.FAIL}sell")
+        #     self.order = self.sell(exectype=bt.Order.Market)
+        # self.t = 1 - self.t
 
     def notify_order(self, order):
         if order.status in [order.Submitted, order.Accepted]:
