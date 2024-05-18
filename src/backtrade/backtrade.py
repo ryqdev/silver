@@ -2,7 +2,7 @@ from typing import NoReturn
 from datetime import datetime
 
 from loguru import logger
-from src.color import bcolors
+from src.util.color import bcolors
 from src.strategies.strategy import *
 
 

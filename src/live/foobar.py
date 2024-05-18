@@ -1,6 +1,6 @@
 import backtrader as bt
 from loguru import logger
-from src.color import bcolors
+from src.util.color import bcolors
 
 Status = [
     'Created', 'Submitted', 'Accepted', 'Partial', 'Completed',
