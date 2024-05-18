@@ -49,7 +49,7 @@ def live_trader() -> NoReturn:
     cerebro.resampledata(data, timeframe=bt.TimeFrame.Seconds, compression=1)
 
     cerebro.broker = store.getbroker()
-    cerebro.addstrategy(MeanReversion)
+    cerebro.addstrategy(MyStrategy)
     cerebro.run()
 
     #BATS, BYX, EDGX, EDGEA, IEX
