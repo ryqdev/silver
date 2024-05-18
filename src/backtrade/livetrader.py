@@ -1,5 +1,6 @@
 import backtrader as bt
 from typing import NoReturn
+from loguru import logger
 
 import backtrader_ib_insync as ibnew
 
@@ -37,7 +38,10 @@ class MyStrategy(bt.Strategy):
             self.sell(exectype=bt.Order.Market)
 
 
-def live_trader() -> NoReturn:
+def live_trader(symbol: str, strategy_class: bt.Strategy) -> NoReturn:
+    # TODO: use symbol and strategy_class
+    logger.info(f"live trading: {symbol}, strategy: {strategy_class}")
+
     cerebro = bt.Cerebro()
 
     store = ibnew.IBStore(port=7497)

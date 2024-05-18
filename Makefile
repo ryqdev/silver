@@ -9,6 +9,6 @@ backtrader_csv: csv
 backtrader_ibkr:
 	@echo "TODO"
 
-# make live
+# make live symbol=SPY strategy=hold
 live:
-	@python main.py --live 1
+	@python main.py --live ${symbol} --strategy ${strategy}

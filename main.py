@@ -51,7 +51,7 @@ def main() -> NoReturn:
     args = parser.parse_args()
 
     if args.live is not None:
-        live_trader()
+        live_trader(args.live, handle_strategy(args.strategy))
 
     if args.csv is not None:
         handle_csv(args.csv)
