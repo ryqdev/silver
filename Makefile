@@ -10,5 +10,6 @@ backtrader_ibkr:
 	@echo "TODO"
 
 # make live symbol=SPY strategy=hold
+# warning: make live command is not ready!!!
 live:
 	@python main.py --live ${symbol} --strategy ${strategy}
