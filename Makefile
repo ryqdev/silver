@@ -9,5 +9,6 @@ backtrader_csv: csv
 backtrader_ibkr:
 	@echo "TODO"
 
+# make live
 live:
 	@python main.py --live 1
