@@ -1,8 +1,8 @@
 import argparse
 from typing import NoReturn
 
-from src.clickhouse.clickhouse import handle_clickhouse
-from src.backtest.backtest import handle_backtest
+# from src.clickhouse.clickhouse import handle_clickhouse
+# from src.backtest.backtest import handle_backtest
 from src.csv.csv import handle_csv
 from src.backtrade.backtrade import handler_backtrader
 from src.strategies.strategy import handle_strategy
@@ -15,14 +15,14 @@ def main() -> NoReturn:
                         type=str,
                         help='fetch data from yahoo finance and save it to local csv file',
                         default=None)
-    parser.add_argument('--clickhouse',
-                        type=str,
-                        help='fetch data from yahoo finance and save it to clickhouse',
-                        default=None)
-    parser.add_argument('--backtest',
-                        type=str,
-                        help='backtest strategies',
-                        default=None)
+    # parser.add_argument('--clickhouse',
+    #                     type=str,
+    #                     help='fetch data from yahoo finance and save it to clickhouse',
+    #                     default=None)
+    # parser.add_argument('--backtest',
+    #                     type=str,
+    #                     help='backtest strategies',
+    #                     default=None)
 
     # Reference: https://www.backtrader.com/docu/
     parser.add_argument('--backtrader',
