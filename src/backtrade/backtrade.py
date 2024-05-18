@@ -1,9 +1,9 @@
 from typing import NoReturn
 from datetime import datetime
-
 from loguru import logger
+import backtrader as bt
+
 from src.util.color import bcolors
-from src.strategies.strategy import *
 
 
 def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_plotting: bool) -> NoReturn:

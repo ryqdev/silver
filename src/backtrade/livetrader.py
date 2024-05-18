@@ -1,9 +1,6 @@
-import datetime
-
 import backtrader as bt
 from typing import NoReturn
 
-from src.strategies.mean_reversion import MeanReversion
 import backtrader_ib_insync as ibnew
 
 
@@ -52,4 +49,3 @@ def live_trader() -> NoReturn:
     cerebro.addstrategy(MyStrategy)
     cerebro.run()
 
-    #BATS, BYX, EDGX, EDGEA, IEX

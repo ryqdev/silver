@@ -1,4 +1,4 @@
-from src.strategies.strategy import *
+import backtrader as bt
 from loguru import logger
 
 

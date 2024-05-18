@@ -1,5 +1,0 @@
-[strategy]
-symbol = "AAPL"
-holding = 100
-start = "2023-01-12"
-end = "2024-05-10"
