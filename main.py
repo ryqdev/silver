@@ -4,8 +4,8 @@ from typing import NoReturn, Dict
 import backtrader as bt
 
 from src.csv.csv import handle_csv
-from src.backtrade.backtrade import handler_backtrader
-from src.backtrade.livetrader import live_trader
+from src.brokers.ibkr.backtrade import handler_backtrader
+from src.brokers.ibkr.livetrader import live_trader
 
 from strategies.smacross import SmaCross
 from strategies.hold import BuyAndHold
