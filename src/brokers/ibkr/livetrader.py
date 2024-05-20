@@ -27,8 +27,11 @@ class MyStrategy(bt.Strategy):
         print(",".join(ohlcv))
 
     def next(self):
-        self.log_data()
+        # pass invalid data
+        if self.data.volume[0] == 0.0 or self.data.open[0] * self.data.high[0] * self.data.low[0] * self.data.close[0] == 0.0:
+            return
 
+        self.log_data()
         if not self.data_ready:
             return
 
