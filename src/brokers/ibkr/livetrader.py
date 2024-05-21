@@ -1,6 +1,7 @@
 import backtrader as bt
 from typing import NoReturn
 from loguru import logger
+from src.util.color import bcolors
 
 import backtrader_ib_insync as ibnew
 
@@ -16,8 +17,9 @@ class MyStrategy(bt.Strategy):
         if status == data.LIVE:
             self.data_ready = True
 
-    def log_data(self):
+    def log_data(self, color: str):
         ohlcv = []
+        ohlcv.append(str(color))
         ohlcv.append(str(self.data.datetime.datetime()))
         ohlcv.append(str(self.data.open[0]))
         ohlcv.append(str(self.data.high[0]))
@@ -29,9 +31,11 @@ class MyStrategy(bt.Strategy):
     def next(self):
         # pass invalid data
         if self.data.volume[0] == 0.0 or self.data.open[0] * self.data.high[0] * self.data.low[0] * self.data.close[0] == 0.0:
+            # self.log_data(bcolors.WARNING)
             return
+        else:
+            self.log_data(bcolors.OKGREEN)
 
-        self.log_data()
         if not self.data_ready:
             return
 
