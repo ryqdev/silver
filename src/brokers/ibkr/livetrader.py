@@ -46,7 +46,6 @@ class MyStrategy(bt.Strategy):
 
 
 def live_trader(symbol: str, strategy_class: bt.Strategy) -> NoReturn:
-    # TODO: use symbol and strategy_class
     logger.info(f"live trading: {symbol}, strategy: {strategy_class}")
 
     cerebro = bt.Cerebro()
