@@ -45,7 +45,7 @@ def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_plotting: bo
     sharp_ratio = strat.analyzers.SharpeRatio.get_analysis()['sharperatio']
     rtot = strat.analyzers.Returns.get_analysis()['rtot']
     drawdown = strat.analyzers.DrawDown.get_analysis()['max']['drawdown']
-    logger.info(f"{bcolors.WARNING}******* Statistics ********")
+    logger.info(f"{bcolors.WARNING}******** Statistics ********")
     logger.info(f'Sharpe Ratio:{sharp_ratio}')
     logger.info(f'Returns:{rtot}')
     logger.info(f'DrawDown:{drawdown}')
