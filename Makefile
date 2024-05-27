@@ -6,8 +6,6 @@ csv:
 backtrader_csv: csv
 	@python main.py --backtrader ${symbol} --strategy ${strategy} --plot ${plot}
 
-backtrader_ibkr:
-	@echo "TODO"
 
 # make live symbol=SPY strategy=hold
 # warning: make live command is not ready!!!
