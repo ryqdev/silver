@@ -40,4 +40,5 @@ make live symbol=<stock symbol> strategy=<strategy abbreviation in main.py>
 ```
 
 ## References
+https://www.backtrader.com/
 https://github.com/ultra1971/backtrader_ib_insync
