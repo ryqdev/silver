@@ -1,5 +1,10 @@
 # silver
 
+## Features
+- [x] Download CSV files from Yahoo Finance for backtesting
+- [x] Backtest with Backtrader
+- [x] Paper/Live Trading Backtrader and IBKR TWS 
+
 ## Quick Start
 ```shell
 make backtrader_csv symbol=SPY strategy=sma plot=true
