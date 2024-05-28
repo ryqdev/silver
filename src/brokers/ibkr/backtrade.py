@@ -54,4 +54,3 @@ def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_plotting: bo
     # plot
     if is_plotting:
         cerebro.plot(iplot=False)
-

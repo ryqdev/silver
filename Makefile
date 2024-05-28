@@ -7,7 +7,6 @@ backtrader_csv: csv
 	@python main.py --backtrader ${symbol} --strategy ${strategy} --plot ${plot}
 
 
-# make live symbol=SPY strategy=hold
-# warning: make live command is not ready!!!
+# make live strategy=paper
 live:
-	@python main.py --live ${symbol} --strategy ${strategy}
+	@python main.py --live ${strategy}

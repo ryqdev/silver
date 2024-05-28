@@ -6,23 +6,24 @@ import backtrader as bt
 from src.csv.csv import handle_csv
 from src.brokers.ibkr.backtrade import handler_backtrader
 from src.brokers.ibkr.livetrader import live_trader
+from strategies.paper_trading_test import PaperTradingTest
 
 from strategies.smacross import SmaCross
 from strategies.hold import BuyAndHold
 from strategies.mean_reversion import MeanReversion
 
-
 strategies_mapping: Dict[str, bt.Strategy] = {
     "sma": SmaCross,
     "hold": BuyAndHold,
-    "mean": MeanReversion
+    "mean": MeanReversion,
+    "paper": PaperTradingTest
 }
 
 
 def main() -> NoReturn:
     parser = argparse.ArgumentParser(description='silver')
 
-    # Reference: https://www.backtrader.com/docu/
+    # Backtrader: https://www.backtrader.com/docu/
     parser.add_argument('--backtrader',
                         type=str,
                         help='backtrader',
@@ -50,13 +51,13 @@ def main() -> NoReturn:
 
     args = parser.parse_args()
 
-    if args.live is not None:
-        live_trader(args.live, handle_strategy(args.strategy))
+    if args.live:
+        live_trader(args.live, handle_strategy(args.live))
 
-    if args.csv is not None:
+    if args.csv:
         handle_csv(args.csv)
 
-    if args.backtrader is not None:
+    if args.backtrader:
         handler_backtrader(args.backtrader, handle_strategy(args.strategy), handle_plot(args.plot))
 
 
@@ -68,9 +69,8 @@ def handle_plot(plot: str) -> bool:
     return False
 
 
-def handle_strategy(stragety: str = None) -> bt.Strategy:
-    if stragety is not None:
-        return strategies_mapping[stragety]
+def handle_strategy(strategy: str = None) -> bt.Strategy:
+    return strategies_mapping[strategy]
 
 
 if __name__ == "__main__":
