@@ -2,6 +2,7 @@ import backtrader as bt
 from loguru import logger
 from src.util.color import bcolors
 
+
 class PaperTradingTest(bt.Strategy):
 
     def __init__(self):
@@ -37,4 +38,3 @@ class PaperTradingTest(bt.Strategy):
             self.buy(exectype=bt.Order.Market)
         elif self.position:
             self.sell(exectype=bt.Order.Market)
-

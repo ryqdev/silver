@@ -1,6 +1,5 @@
 import backtrader as bt
 from loguru import logger
-from src.util.color import bcolors
 
 Status = [
     'Created', 'Submitted', 'Accepted', 'Partial', 'Completed',
@@ -8,13 +7,11 @@ Status = [
 ]
 
 
-
 class FooBar(bt.Strategy):
     params = {'body': 0.0}
 
     def log(self, txt, dt=None):
         dt = dt or self.data.datetime.date(0)
-        # dt = dt or self.datas[0].datetime.date(0)
         logger.info('%s, %s' % (dt.isoformat(), txt))
 
     def __init__(self):

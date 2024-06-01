@@ -9,15 +9,10 @@ class BuyAndHold(bt.Strategy):
         self.order = None
 
     def log(self, txt, dt=None):
-        # dt = dt or self.datas[0].datetime.date(0)
-        # logger.info('%s, %s' % (dt.isoformat(), txt))
         logger.info(txt)
 
 
     def next(self):
-        # buy and hold
-        # size = self.broker.getcash() // self.data
-        # self.log(f"size: {size}")
         self.log("BUY")
         self.order = self.buy(size=90500)
 
