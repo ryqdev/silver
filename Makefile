@@ -3,19 +3,15 @@
 help:  ## Display this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-# make csv symbol=TLT
 .PHONY: csv
-csv: ## Download csv data
+csv: ## Download csv data, e.g.: make csv symbol=TLT
 	@python main.py --csv ${symbol}
 
-# make backtrader symbol=SPY strategy=hold plot=true
 .PHONY: backtrader
-backtrader: csv ## Backtest with backtrader
+backtrader: csv ## Backtest with backtrader, e.g.: make backtrader symbol=SPY strategy=hold plot=true
 	@python main.py --backtrader ${symbol} --strategy ${strategy} --plot ${plot}
 
-
-# make live strategy=paper
 .PHONY: live
-live: ## Live trading
+live: ## Live trading, e.g.: make live strategy=paper
 	@python main.py --live ${strategy}
 
