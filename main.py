@@ -10,12 +10,10 @@ from strategies.paper_trading_test import PaperTradingTest
 
 from strategies.smacross import SmaCross
 from strategies.hold import BuyAndHold
-from strategies.mean_reversion import MeanReversion
 
 strategies_mapping: Dict[str, bt.Strategy] = {
     "sma": SmaCross,
     "hold": BuyAndHold,
-    "mean": MeanReversion,
     "paper": PaperTradingTest
 }
 

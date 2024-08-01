@@ -14,7 +14,7 @@ class BuyAndHold(bt.Strategy):
 
     def next(self):
         self.log("BUY")
-        self.order = self.buy(size=90500)
+        self.order = self.buy()
 
     def notify_order(self, order):
         if order.status in [order.Submitted, order.Accepted]:
