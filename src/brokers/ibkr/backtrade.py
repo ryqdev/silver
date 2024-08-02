@@ -28,7 +28,7 @@ def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_plotting: bo
     # if os.path.isfile(data_path) == False:
     #     handle_csv(symbol)
     data0 = bt.feeds.YahooFinanceData(dataname=data_path,
-                                      fromdate=datetime(2000, 1, 1),
+                                      fromdate=datetime(2020, 1, 1),
                                       todate=datetime(2024, 5, 15))
     cerebro.adddata(data0)
 

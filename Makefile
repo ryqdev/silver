@@ -8,7 +8,7 @@ csv: ## Download csv data, e.g.: make csv symbol=TLT
 	@python main.py --csv ${symbol}
 
 .PHONY: backtrader
-backtrader: csv ## Backtest with backtrader, e.g.: make backtrader symbol=SPY strategy=hold plot=true
+backtrader: csv ## Backtest with backtrader, e.g.: make backtrader symbol=SPY strategy=BuyAndHold plot=true
 	@python main.py --backtrader ${symbol} --strategy ${strategy} --plot ${plot}
 
 .PHONY: live

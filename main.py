@@ -1,12 +1,15 @@
 import argparse
 from typing import NoReturn, Dict
+import sys
 
 import backtrader as bt
 
 from src.csv.csv import handle_csv
+from src.util.common import get_all_class_objects
 from src.brokers.ibkr.backtrade import handler_backtrader
 from src.brokers.ibkr.livetrader import live_trader
 from strategies.paper_trading_test import PaperTradingTest
+from loguru import logger
 
 from strategies.smacross import SmaCross
 from strategies.hold import BuyAndHold
@@ -66,11 +69,10 @@ def handle_plot(plot: str) -> bool:
 
     return False
 
-
 def handle_strategy(strategy: str = None) -> bt.Strategy:
-    return strategies_mapping[strategy]
-
+    strategy_class = get_all_class_objects("strategies/").get(strategy)
+    logger.info(strategy_class)
+    return strategy_class
 
 if __name__ == "__main__":
     main()
-
