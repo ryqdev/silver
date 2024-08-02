@@ -7,7 +7,7 @@
 
 ## Quick Start
 ```shell
-make backtrader_csv symbol=SPY strategy=sma plot=true
+make backtrader symbol=SPY strategy=BuyAndHold plot=true
 ```
 Outout:
 ```shell
