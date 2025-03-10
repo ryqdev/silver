@@ -3,7 +3,7 @@ import os
 import yfinance as yf
 import pandas as pd
 
-from typing import NoReturn, List
+from typing import NoReturn
 from loguru import logger
 
 def handle_csv(symbol: str) -> NoReturn:
