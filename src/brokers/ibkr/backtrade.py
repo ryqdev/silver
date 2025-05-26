@@ -7,7 +7,6 @@ from loguru import logger
 import backtrader as bt
 
 from src.util.color import bcolors
-from src.csv.csv import handle_csv
 
 
 def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_plotting: bool) -> NoReturn:
@@ -25,8 +24,7 @@ def handler_backtrader(symbol: str, strategy_class: bt.Strategy, is_plotting: bo
 
     # data
     data_path:str = f'data/{symbol}.csv'
-    # if os.path.isfile(data_path) == False:
-    #     handle_csv(symbol)
+
     data0 = bt.feeds.YahooFinanceData(dataname=data_path,
                                       fromdate=datetime(2000, 1, 1),
                                       todate=datetime(2024, 5, 15))

@@ -18,7 +18,7 @@ strategies_mapping: dict[str, bt.Strategy] = {
 }
 
 
-def main() -> NoReturn:
+def main() -> None:
     parser = argparse.ArgumentParser(description='silver')
 
     # Backtrader: https://www.backtrader.com/docu/

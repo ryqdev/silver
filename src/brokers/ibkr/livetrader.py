@@ -1,13 +1,11 @@
 import backtrader as bt
-from typing import NoReturn
 from loguru import logger
-from src.util.color import bcolors
 
 import backtrader_ib_insync as ibnew
 
 
 
-def live_trader(symbol: str, strategy_class: bt.Strategy) -> NoReturn:
+def live_trader(symbol: str, strategy_class: bt.Strategy) -> None:
     logger.info(f"Trading: {symbol}, strategy: {strategy_class}")
 
     cerebro = bt.Cerebro()
