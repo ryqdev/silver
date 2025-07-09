@@ -5,5 +5,5 @@ help:  ## Display this help
 
 .PHONY: demo
 demo:
-	@uv run main.py --symbol SPY --start 20250707 --end 20250709 --kline d
+	@uv run main.py --symbol BTCUSDT --start 2020-01-02 --end 2020-01-02 --kline 1m
 

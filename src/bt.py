@@ -38,7 +38,7 @@ class BasicStrategy(bt.Strategy):
                 self.log(f'SELL CREATE, Price: {self.dataclose[0]:.2f}')
                 self.order = self.buy()
 
-if __name__ == '__main__':
+def run(symbol: str, start: str, end: str, kline: str) -> None:
     cerebro = bt.Cerebro()
 
     # Create a custom CSV data feed
@@ -51,7 +51,7 @@ if __name__ == '__main__':
             return super()._loadline(linetokens)
 
     data = TimestampCSVData(
-        dataname='data/BTCUSDT-1m-2020-01-21.csv',
+        dataname=f'data/{symbol}-{kline}-{start}.csv',
         datetime=0,
         open=1,
         high=2,
