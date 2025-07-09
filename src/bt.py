@@ -32,11 +32,11 @@ class BasicStrategy(bt.Strategy):
         if not self.position:
             if self.dataclose[0] > self.dataclose[-1]:
                 self.log(f'BUY CREATE, Price: {self.dataclose[0]:.2f}')
-                self.order = self.buy()
+                self.order = self.sell()
         else:
             if self.dataclose[0] < self.dataclose[-1]:
                 self.log(f'SELL CREATE, Price: {self.dataclose[0]:.2f}')
-                self.order = self.sell()
+                self.order = self.buy()
 
 if __name__ == '__main__':
     cerebro = bt.Cerebro()
@@ -51,7 +51,7 @@ if __name__ == '__main__':
             return super()._loadline(linetokens)
 
     data = TimestampCSVData(
-        dataname='data/BTCUSDT-1m-2020-01-01.csv',
+        dataname='data/BTCUSDT-1m-2020-01-21.csv',
         datetime=0,
         open=1,
         high=2,
@@ -61,8 +61,6 @@ if __name__ == '__main__':
         dtformat='%Y-%m-%d %H:%M:%S',
         timeframe=bt.TimeFrame.Minutes,
         compression=1,
-        fromdate=datetime.datetime(2020, 1, 1),
-        todate=datetime.datetime(2020, 1, 2)
     )
 
     cerebro.adddata(data)
