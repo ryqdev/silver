@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "backtrader>=1.9.78.123",
     "loguru>=0.7.3",
-    "pandas>=2.3.1",
-    "yfinance>=0.2.65",
+    "matplotlib>=3.10.3",
 ]
