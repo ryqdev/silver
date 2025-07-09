@@ -3,11 +3,12 @@ from __future__ import (absolute_import, division, print_function,
 
 import backtrader as bt
 import datetime
+from loguru import logger
 
 class BasicStrategy(bt.Strategy):
     def log(self, txt, dt=None):
         dt = dt or self.datas[0].datetime.date(0)
-        print(f'{dt.isoformat()} {txt}')
+        logger.info(f'{dt.isoformat()} {txt}')
 
     def __init__(self):
         self.dataclose = self.datas[0].close
@@ -39,6 +40,8 @@ class BasicStrategy(bt.Strategy):
                 self.order = self.buy()
 
 def run(symbol: str, start: str, end: str, kline: str) -> None:
+    logger.info(f"starting with {symbol}, start: {start}, end: {end}, kline: {kline}")
+
     cerebro = bt.Cerebro()
 
     # Create a custom CSV data feed
@@ -69,10 +72,10 @@ def run(symbol: str, start: str, end: str, kline: str) -> None:
     cerebro.broker.setcash(100000.0)
     cerebro.broker.setcommission(commission=0.001)
 
-    print('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
+    logger.info('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
 
     cerebro.run()
 
-    print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
+    logger.info('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
 
     cerebro.plot()

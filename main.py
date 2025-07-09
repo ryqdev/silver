@@ -1,6 +1,6 @@
 import argparse
 
-from src.start import start
+from src.bt import run
 
 def main() -> None:
     parser = argparse.ArgumentParser(description='silver')
@@ -10,7 +10,7 @@ def main() -> None:
     parser.add_argument('--kline', type=str, required=True, help='K line')
     args = parser.parse_args()
 
-    start(args.symbol, args.start, args.end, args.kline)
+    run(args.symbol, args.start, args.end, args.kline)
 
 if __name__ == "__main__":
     main()
