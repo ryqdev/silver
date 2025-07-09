@@ -1,5 +1,6 @@
+from enum import Enum
 
-class bcolors:
+class Color(Enum):
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKCYAN = '\033[96m'
