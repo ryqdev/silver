@@ -33,11 +33,11 @@ class BasicStrategy(bt.Strategy):
         if not self.position:
             if self.dataclose[0] > self.dataclose[-1]:
                 self.log(f'BUY CREATE, Price: {self.dataclose[0]:.2f}')
-                self.order = self.sell()
+                self.order = self.buy()
         else:
             if self.dataclose[0] < self.dataclose[-1]:
                 self.log(f'SELL CREATE, Price: {self.dataclose[0]:.2f}')
-                self.order = self.buy()
+                self.order = self.sell()
 
 def run(symbol: str, start: str, end: str, kline: str) -> None:
     logger.info(f"starting with {symbol}, start: {start}, end: {end}, kline: {kline}")
