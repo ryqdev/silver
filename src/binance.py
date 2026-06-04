@@ -8,7 +8,8 @@ from typing import Optional, Callable, Dict, Any
 class BinanceWebSocket:
     def __init__(self):
         self.base_url = "wss://stream.binance.com:9443/ws"
-        self.websocket: Optional[websockets.WebSocketServerProtocol] = None
+        # This is a client connection, not a server protocol.
+        self.websocket: Optional[websockets.WebSocketClientProtocol] = None
         self.subscriptions = []
         self.running = False
         self.reconnect_attempts = 0
@@ -154,6 +155,8 @@ class BinanceWebSocket:
     async def listen(self, callback: Optional[Callable] = None):
         """Listen for incoming messages with automatic reconnection"""
         logger.info("Starting to listen for messages...")
+        consecutive_errors = 0
+        max_consecutive_errors = 5
         while self.running:
             try:
                 if self.websocket is None or self.websocket.close_code is not None:
@@ -163,11 +166,12 @@ class BinanceWebSocket:
                         logger.error("Failed to reconnect, stopping listener")
                         break
                     continue
-                
+
                 message = await asyncio.wait_for(self.websocket.recv(), timeout=self.ping_interval + 10)
                 logger.debug(f"Received raw message: {message}")
                 await self.handle_message(message, callback)
-                
+                consecutive_errors = 0
+
             except websockets.exceptions.ConnectionClosed:
                 logger.warning("WebSocket connection closed, attempting to reconnect...")
                 success = await self.reconnect()
@@ -188,7 +192,16 @@ class BinanceWebSocket:
                         break
                         
             except Exception as e:
-                logger.error(f"Error receiving message: {e}")
+                # Unexpected error: retry a few times, but don't loop forever
+                # on a persistent failure (e.g. a bug in message handling).
+                consecutive_errors += 1
+                logger.error(
+                    f"Error receiving message "
+                    f"({consecutive_errors}/{max_consecutive_errors}): {e}"
+                )
+                if consecutive_errors >= max_consecutive_errors:
+                    logger.error("Too many consecutive errors, stopping listener")
+                    break
                 await asyncio.sleep(1)
                 
     def is_connected(self) -> bool:
