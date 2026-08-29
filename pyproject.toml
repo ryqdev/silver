@@ -8,4 +8,5 @@ dependencies = [
     "backtrader>=1.9.78.123",
     "loguru>=0.7.3",
     "matplotlib>=3.10.3",
+    "websockets>=12.0",
 ]
